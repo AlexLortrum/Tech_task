@@ -15,16 +15,16 @@ class Contacts_page(Base_page):
     def get_partners_block(self):
         try:
             element = self.find_element(*self.partners_block)
-            logging.info("Contacts_page.get_partners_block(): success")
+            self.logger.info("Contacts_page.get_partners_block(): success")
             return element
         except NoSuchElementException:
-            logging.exception("Contacts_page.get_partners_block(): error")
+            self.logger.exception("Contacts_page.get_partners_block(): error")
             return 1
 
     def get_region_title(self):
         try:
             element = self.find_element(*self.region_chooser_text).text 
-            logging.info("Contacts_page.get_region_title(): success")
+            self.logger.info("Contacts_page.get_region_title(): success")
             return element
         except NoSuchElementException:
             self.logger.exception("Contacts_page.get_region_title(): error")
@@ -37,10 +37,10 @@ class Contacts_page(Base_page):
             new_region = (By.XPATH, f"//span[@title='{region}']")
             self.wait.until_not(EC.presence_of_element_located(self.preload_block))
             self.find_element(*new_region).click()
-            logging.info("Contacts_page.change_region(): success")
+            self.logger.info("Contacts_page.change_region(): success")
             return 0
         except:
-            logging.exception("Contacts_page.change_region(): error")
+            self.logger.exception("Contacts_page.change_region(): error")
             return 1
 
 
@@ -48,8 +48,8 @@ class Contacts_page(Base_page):
         try:
             self.wait.until_not(EC.presence_of_element_located(self.preload_block))
             self.find_element(*self.tensor_logo).click()
-            logging.info("Contacts_page.click_tensor_logo(): success")
+            self.logger.info("Contacts_page.click_tensor_logo(): success")
             return Tensor_page(self.driver, self.logger)
         except NoSuchElementException:
-            logging.exception("Contacts_page.click_tensor_logo(): error")
+            self.logger.exception("Contacts_page.click_tensor_logo(): error")
             return 1
