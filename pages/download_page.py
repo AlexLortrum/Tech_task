@@ -13,7 +13,7 @@ class Download_page(Base_page):
             self.logger.info("Download_page.download_web_installer(): success")
             return 0
         except:
-            logging.exception("Download_page.download_web_installer(): error")
+            self.logger.exception("Download_page.download_web_installer(): error")
             return 1
 
     def get_web_installer_name(self):
