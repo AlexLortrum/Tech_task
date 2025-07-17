@@ -12,7 +12,7 @@ class Tensor_about_page(Base_page):
         try:
             images = self.find_elements(*self.working_images)
         except NoSuchElementException:
-            logging.exception("Tensor_about_page.check_images_are_equal(): error")
+            self.logger.exception("Tensor_about_page.check_images_are_equal(): error")
             return 1
         
         first_image_height = int(images[0].get_attribute("height"))
@@ -22,5 +22,5 @@ class Tensor_about_page(Base_page):
             image_width = int(image.get_attribute("width"))
             if first_image_height != image_height or first_image_width != image_width:
                 return 1
-        logging.info("Tensor_about_page.check_images_are_equal(): success")
+        self.logger.info("Tensor_about_page.check_images_are_equal(): success")
         return 0
