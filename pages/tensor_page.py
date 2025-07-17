@@ -15,18 +15,18 @@ class Tensor_page(Base_page):
     def check_block(self):
         try:
             self.find_element(*self.strength_in_people_block)
-            logging.info("Tensor_page.check_block(): success")
+            self.logger.info("Tensor_page.check_block(): success")
             return 0
         except NoSuchElementException:
-            logging.exception("Tensor_page.check_block(): error")
+            self.logger.exception("Tensor_page.check_block(): error")
             return 1 
 
     def click_about_elem(self):
         try:
             self.wait.until_not(EC.presence_of_element_located(self.preload_block))
             self.find_element(*self.strength_in_people_about).click()
-            logging.info("Tensor_page.click_about_elem(): success")
+            self.logger.info("Tensor_page.click_about_elem(): success")
             return Tensor_about_page(self.driver, self.logger)
         except:
-            logging.exception("Tensor_page.click_about_elem(): error")
+            self.logger.exception("Tensor_page.click_about_elem(): error")
             return 1
