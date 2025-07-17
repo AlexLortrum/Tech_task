@@ -29,8 +29,7 @@ def test_scenario3(driver):
         sleep(1)
         timeout -= 1
         if timeout == 0:
-            print("times out")
-            return 1
+            raise ValueError("Times out")
     
     file_size = os.path.getsize(filepath)
     for i in range(size_aliases[web_installer_size[1]]):
