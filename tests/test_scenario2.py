@@ -24,6 +24,7 @@ def test_scenario2(driver):
     assert region == "Камчатский край"
 
     new_partners_city = contacts.get_partners_block().find_element(By.ID, "city-id-2").text
+    assert new_partners_city != 1
     assert old_partners_city != new_partners_city
     assert contacts.get_title() == "Saby Контакты — Камчатский край"
     
